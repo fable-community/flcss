@@ -141,13 +141,13 @@ export function createAnimation(animation: Animation) {
         animation.iterationCount || animation.direction || animation.fillMode)
       ? `${animationName} ${duration} ${timingFunction} ${delay} ${iterationCount} ${direction} ${fillMode}`
       : animationName,
-    style: `@keyframes ${animationName} { ${keyframes.join(' ')} }`,
+    bundle: `@keyframes ${animationName} { ${keyframes.join(' ')} }`,
   };
 }
 
-export function createStyle<T extends string>(
+export function createStyle<T>(
   styles: { [key in keyof T]: StyleSheet & FlcssProperties } | StyleSheet,
-): { classes: { [key in keyof T]: string } } {
+) {
   const classNames: Record<string, string> = {};
 
   const rules: string[] = [];
@@ -194,7 +194,7 @@ export function createStyle<T extends string>(
   }
 
   return {
-    classes: classNames,
-    style: rules.join('\n'),
+    names: classNames,
+    bundle: rules.join('\n'),
   };
 }
