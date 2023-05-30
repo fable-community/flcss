@@ -3,7 +3,7 @@
 ```jsx
 import { Head } from 'fresh/runtime.ts';
 
-import { createStyle } from 'https://pax.deno.dev/fable-commuinty/flcss@v1.0.1';
+import { createStyle } from 'https://pax.deno.dev/fable-community/flcss@v1.0.1';
 
 const styles = createStyle({
   button: {
