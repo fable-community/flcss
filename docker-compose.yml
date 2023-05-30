@@ -1,9 +1,0 @@
-version: '3.9'
-
-services:
-  web:
-    image: flcss
-    build: .
-    volumes:
-      - .:/app
-      - /app/node_modules/

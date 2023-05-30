@@ -1,4 +1,4 @@
-import type * as CSS from 'csstype';
+import type * as CSS from "https://esm.sh/csstype@3.1.2";
 
 type CSSProperties = CSS.Properties<string, number>;
 
