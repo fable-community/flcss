@@ -148,7 +148,7 @@ export function createAnimation(animation: Animation) {
 export function createStyle<T>(
   styles: { [key in keyof T]: StyleSheet & FlcssProperties } | StyleSheet,
 ) {
-  const classNames: Record<string, string> = {};
+  const classNames: { [key in keyof T]: string } = {};
 
   const rules: string[] = [];
 
