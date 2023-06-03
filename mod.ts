@@ -11,9 +11,8 @@ function isValue(obj: unknown): boolean {
 function processProperty(property: string): string {
   // correct vender prefixes
   if (property.substring(0, 1) === property.substring(0, 1).toUpperCase()) {
-    property = `-${property.substring(0, 1).toLowerCase()}${
-      property.substring(1)
-    }`;
+    property = `-${property.substring(0, 1).toLowerCase()}${property.substring(1)
+      }`;
   }
 
   // transform camelCase to no-caps
@@ -41,7 +40,11 @@ function parse(selector: string, style: StyleSheet | FlcssProperties) {
     const declarationsList: { property: string; value: string }[] = [];
 
     for (let property in rule) {
-      const value = rule[property as keyof typeof rule];
+      let value = rule[property as keyof typeof rule];
+
+      if (typeof value === 'string' && value.includes('"')) {
+        value = value.replaceAll('"', '\'');
+      }
 
       // rule is probably a nested object
       if (!isValue(value)) {
@@ -138,7 +141,7 @@ export function createAnimation(animation: Animation) {
 
   return {
     name: (animation.duration || animation.timingFunction || animation.delay ||
-        animation.iterationCount || animation.direction || animation.fillMode)
+      animation.iterationCount || animation.direction || animation.fillMode)
       ? `${animationName} ${duration} ${timingFunction} ${delay} ${iterationCount} ${direction} ${fillMode}`
       : animationName,
     bundle: `@keyframes ${animationName} { ${keyframes.join(' ')} }`,
